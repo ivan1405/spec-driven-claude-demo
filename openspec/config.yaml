@@ -1,0 +1,31 @@
+context:
+  project: |
+    # Project Context
+
+    OpenSpec reads this to understand conventions before drafting changes.
+
+    What this project is
+    A demo workspace for a spec-driven ticket → PR workflow. The app under development is
+    a small React task board in playground/, used to exercise the workflow by filing Jira/
+    Trello tickets and watching them become PRs.
+
+    Tech stack (playground/)
+    - React 18 (JavaScript, not TypeScript) built with Vite.
+    - State: React hooks (useState/useEffect/useReducer). No global state library.
+    - Data layer: all persistence goes through src/api/tasks.js (currently localStorage-backed).
+    - Tests: Vitest + @testing-library/react + jsdom. Run with `npm test`.
+    - Styling: plain CSS in src/index.css using CSS custom properties.
+
+    Conventions
+    - Components: one component per file in src/components/, PascalCase filename matching the component.
+    - api functions are pure-ish and documented with JSDoc; they validate inputs and throw on bad data.
+    - Accessibility floor: labelled controls, visible focus, keyboard-operable.
+    - Commits reference the ticket key: ABC-123: <imperative summary>.
+
+    Spec conventions
+    - One ticket → one change under openspec/changes/<change-id>/.
+    - design.md is the tech plan mapping requirements to files/functions/data shapes.
+    - Spec deltas use headings (ADDED/MODIFIED/REMOVED) and GIVEN/WHEN/THEN scenarios.
+
+    Out of scope by default
+    Auth, real network backend, deployment.

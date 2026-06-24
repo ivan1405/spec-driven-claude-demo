@@ -16,10 +16,15 @@ it back with sharp questions. You do **not** write feature code yourself.
 
 ## 1. Read the ticket
 
-Detect the provider from the URL (see CLAUDE.md): `atlassian.net`/`/browse/` → Jira via
-the `atlassian` MCP; `trello.com/c/` → Trello via the `trello` MCP. Fetch the full ticket
-**including comments and acceptance criteria**. Summarize back, in 3–5 lines, what you
-understand the ask to be. If the fetch fails, report the exact error and stop.
+The orchestrator will pass you `PROVIDER=trello` or `PROVIDER=jira` alongside the URL.
+**Use that value directly — do not re-detect.**
+
+- `PROVIDER=trello` → use `mcp__trello__get_card` (card id is the segment after `/c/` in the URL). Also fetch comments with `mcp__trello__get_card_comments` and acceptance criteria with `mcp__trello__get_acceptance_criteria`.
+- `PROVIDER=jira` → use the `atlassian` MCP tools. The ticket key is the `ABC-123` segment of the URL.
+
+If no PROVIDER was passed, fall back to URL detection: `trello.com/c/` → trello; `atlassian.net`/`/browse/` → jira.
+
+Fetch the full ticket **including comments and acceptance criteria**. Summarize back, in 3–5 lines, what you understand the ask to be. If the fetch fails, report the exact error and stop.
 
 ## 2. Read the codebase
 
