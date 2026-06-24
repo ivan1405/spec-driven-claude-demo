@@ -10,11 +10,17 @@ Ticket URL: **$1**
 
 If `$1` is empty, ask the user for a Jira or Trello ticket URL and stop.
 
+**Detect the provider now, before doing anything else:**
+- If `$1` contains `trello.com/c/` → `PROVIDER=trello`, MCP tools: `mcp__trello__*`
+- If `$1` contains `atlassian.net` or `/browse/` → `PROVIDER=jira`, MCP tools: `mcp__atlassian__*`
+- Otherwise → ask the user which provider it is and stop.
+
 Run the pipeline below. Narrate each step briefly so the user can follow along.
 
 ## Step 1 — Tech-lead review (gate)
-Use the **tech-lead** subagent. Pass it the ticket URL and ask it to read the ticket via
-MCP, read `playground/`, apply the Definition of Ready, and return a verdict.
+Use the **tech-lead** subagent. Pass it the ticket URL **and explicitly state the
+detected `PROVIDER`** so it uses the correct MCP tools without having to re-detect.
+Ask it to read the ticket, read `playground/`, apply the Definition of Ready, and return a verdict.
 
 ## Step 2 — Branch on the verdict
 
