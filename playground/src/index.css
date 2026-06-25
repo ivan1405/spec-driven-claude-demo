@@ -279,7 +279,7 @@ input[type="text"]::placeholder {
   background: var(--p-medium);
 }
 .badge-high {
-  background: var(--p-high);
+  background: #ef4444;
 }
 .task-id {
   color: var(--muted);
