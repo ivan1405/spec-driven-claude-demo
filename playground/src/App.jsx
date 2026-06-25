@@ -7,12 +7,14 @@ import {
   STATUSES,
   STATUS_LABELS,
 } from "./api/tasks.js";
+import { useTheme } from "./hooks/useTheme.js";
 import Header from "./components/Header.jsx";
 import TaskForm from "./components/TaskForm.jsx";
 import FilterBar from "./components/FilterBar.jsx";
 import TaskItem from "./components/TaskItem.jsx";
 
 export default function App() {
+  const { theme, toggle } = useTheme();
   const [tasks, setTasks] = useState(() => getTasks());
   const [priorityFilter, setPriorityFilter] = useState("all");
 
@@ -43,7 +45,7 @@ export default function App() {
 
   return (
     <div className="app">
-      <Header count={tasks.length} />
+      <Header count={tasks.length} theme={theme} onToggleTheme={toggle} />
 
       <main className="container">
         <TaskForm onCreate={handleCreate} />
