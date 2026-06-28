@@ -1,19 +1,17 @@
 {
   "mcpServers": {
     "github": {
-      "command": "npx",
-      "args": ["-y", "@modelcontextprotocol/server-github"],
+      "command": "mcp-server-github",
       "env": {
         "GITHUB_PERSONAL_ACCESS_TOKEN": "${GITHUB_PERSONAL_ACCESS_TOKEN}"
       }
     },
     "atlassian": {
-      "command": "npx",
-      "args": ["-y", "mcp-remote@latest", "https://mcp.atlassian.com/v1/mcp"]
+      "command": "mcp-remote",
+      "args": ["https://mcp.atlassian.com/v1/mcp"]
     },
     "trello": {
-      "command": "npx",
-      "args": ["-y", "@delorenj/mcp-server-trello"],
+      "command": "mcp-server-trello",
       "env": {
         "TRELLO_API_KEY": "${TRELLO_API_KEY}",
         "TRELLO_TOKEN": "${TRELLO_TOKEN}",
