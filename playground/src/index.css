@@ -18,6 +18,20 @@
   --sans: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
 }
 
+[data-theme="light"] {
+  --bg: #f4f4f8;
+  --surface: #ffffff;
+  --surface-2: #eaeaf0;
+  --line: #d0d0de;
+  --ink: #1a1a26;
+  --muted: #6b6b80;
+  --accent: #e05a40;
+  --accent-ink: #ffffff;
+  --p-low: #1a9e93;
+  --p-medium: #c98a00;
+  --p-high: #e05a40;
+}
+
 * {
   box-sizing: border-box;
 }
@@ -61,7 +75,9 @@ body {
 }
 .masthead-inner {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
   gap: 0.25rem;
 }
 .brand {

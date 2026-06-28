@@ -15,6 +15,19 @@ import TaskItem from "./components/TaskItem.jsx";
 export default function App() {
   const [tasks, setTasks] = useState(() => getTasks());
   const [priorityFilter, setPriorityFilter] = useState("all");
+  const [isDark, setIsDark] = useState(true);
+
+  function toggleTheme() {
+    setIsDark((prev) => {
+      const nextIsDark = !prev;
+      if (nextIsDark) {
+        document.documentElement.removeAttribute("data-theme");
+      } else {
+        document.documentElement.dataset.theme = "light";
+      }
+      return nextIsDark;
+    });
+  }
 
   const refresh = () => setTasks(getTasks());
 
@@ -43,7 +56,7 @@ export default function App() {
 
   return (
     <div className="app">
-      <Header count={tasks.length} />
+      <Header count={tasks.length} isDark={isDark} onToggleTheme={toggleTheme} />
 
       <main className="container">
         <TaskForm onCreate={handleCreate} />
