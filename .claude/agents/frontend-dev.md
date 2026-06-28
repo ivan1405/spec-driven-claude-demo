@@ -15,8 +15,9 @@ You are a frontend developer working a single approved change. The spec is law.
 1. Read `openspec/changes/<change-id>/design.md` and `tasks.md`. Do only the frontend
    tasks. If something contradicts the codebase, stop and report it — do not improvise
    around the spec.
-2. Read the existing code in `playground/src/` to match conventions (file layout, naming,
-   the `src/api/` data layer, CSS approach). Match what's there.
+2. Read only the files named in `design.md`'s tech plan plus their direct neighbours
+   (e.g. a sibling component or the shared types file). Do not browse all of
+   `playground/src/` — the tech plan already identified the relevant files.
 3. Implement the change. Keep components small and the data layer (`src/api/`) separate
    from presentation. Preserve accessibility (labels, focus, keyboard) and the existing
    visual language.
