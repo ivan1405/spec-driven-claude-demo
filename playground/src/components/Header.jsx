@@ -6,7 +6,7 @@ export default function Header({ count, isDark, onToggleTheme }) {
           <span className="brand-mark" aria-hidden="true">
             ▟▙
           </span>
-          <span className="brand-name">My Spec Driven Board</span>
+          <span className="brand-name">hola Antonio</span>
         </div>
         <p className="masthead-sub">
           A playground for the spec-driven ticket workflow ·{" "}
