@@ -1,24 +1,5 @@
 :root {
-  /* palette — deep ink with a single warm accent; priority encoded by hue */
-  --bg: #131319;
-  --surface: #1c1c26;
-  --surface-2: #23232f;
-  --line: #303040;
-  --ink: #ececf2;
-  --muted: #9595ab;
-  --accent: #ff7a5c;
-  --accent-ink: #1a0d09;
-
-  --p-low: #54d1c4;
-  --p-medium: #ffc14d;
-  --p-high: #ff7a5c;
-
-  --radius: 10px;
-  --mono: ui-monospace, "SF Mono", "JetBrains Mono", Menlo, Consolas, monospace;
-  --sans: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
-}
-
-[data-theme="light"] {
+  /* palette — light surface with a single warm accent; priority encoded by hue */
   --bg: #f4f4f8;
   --surface: #ffffff;
   --surface-2: #eaeaf0;
@@ -27,9 +8,14 @@
   --muted: #6b6b80;
   --accent: #e05a40;
   --accent-ink: #ffffff;
+
   --p-low: #1a9e93;
   --p-medium: #c98a00;
   --p-high: #e05a40;
+
+  --radius: 10px;
+  --mono: ui-monospace, "SF Mono", "JetBrains Mono", Menlo, Consolas, monospace;
+  --sans: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
 }
 
 * {
