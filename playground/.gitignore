@@ -4,3 +4,5 @@ dist
 .DS_Store
 .envrc
 .envrc
+test-results
+playwright-report
