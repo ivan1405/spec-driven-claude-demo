@@ -7,4 +7,12 @@ describe("Header", () => {
     render(<Header count={0} />);
     expect(screen.getByText("My Spec Driven Board")).toBeInTheDocument();
   });
+
+  // REQ-001: header renders a single theme toggle control with an
+  // accessible name describing the action (not a bare icon).
+  it("renders a theme toggle control with a non-empty accessible name (REQ-001)", () => {
+    render(<Header count={0} theme="light" onToggle={() => {}} />);
+    const toggle = screen.getByRole("button", { name: "Switch to dark mode" });
+    expect(toggle).toBeInTheDocument();
+  });
 });
