@@ -40,7 +40,9 @@ used everywhere (`--bg`, `--surface`, `--surface-2`, `--line`, `--ink`,
 `--muted`). Rejected: a second full stylesheet or a CSS-in-JS theme object —
 the existing app already threads all color through these variables, so an
 attribute-scoped override is the smallest change that reaches every consumer
-(REQ-006) and needs no changes outside `index.css`.
+(REQ-006) and needs no changes outside `index.css`. The background should
+update the entire window. Texts and relevant parts of the app should be 
+updated accordingly so that they remain readable in both modes.
 
 **Icons are inline SVG components defined next to `Header.jsx`**, sized and
 colored via `currentColor`/CSS so they follow the same palette variables.
