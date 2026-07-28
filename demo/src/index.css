@@ -41,6 +41,16 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
+/* re-declares color/background so `[data-theme="dark"]`'s locally-scoped
+   variable overrides actually reach inherited text color — `body`'s own
+   `color` resolves against :root and won't re-evaluate for a descendant's
+   override otherwise */
+.app {
+  min-height: 100vh;
+  background: var(--bg);
+  color: var(--ink);
+}
+
 .container {
   width: min(1040px, 100% - 2.5rem);
   margin-inline: auto;
