@@ -15,6 +15,9 @@ import TaskItem from "./components/TaskItem.jsx";
 export default function App() {
   const [tasks, setTasks] = useState(() => getTasks());
   const [priorityFilter, setPriorityFilter] = useState("all");
+  const [theme, setTheme] = useState("light");
+
+  const toggleTheme = () => setTheme((current) => (current === "light" ? "dark" : "light"));
 
   const refresh = () => setTasks(getTasks());
 
@@ -42,8 +45,8 @@ export default function App() {
   );
 
   return (
-    <div className="app">
-      <Header count={tasks.length} />
+    <div className="app" data-theme={theme}>
+      <Header count={tasks.length} theme={theme} onToggle={toggleTheme} />
 
       <main className="container">
         <TaskForm onCreate={handleCreate} />

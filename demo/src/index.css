@@ -18,6 +18,16 @@
   --sans: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
 }
 
+/* dark theme override — same custom properties, redefined for [data-theme="dark"] */
+[data-theme="dark"] {
+  --bg: #13131c;
+  --surface: #1d1d29;
+  --surface-2: #262636;
+  --line: #3a3a4e;
+  --ink: #eef0f5;
+  --muted: #a3a3ba;
+}
+
 * {
   box-sizing: border-box;
 }
@@ -29,6 +39,12 @@ body {
   font-family: var(--sans);
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
+}
+
+.app {
+  min-height: 100vh;
+  background: var(--bg);
+  color: var(--ink);
 }
 
 .container {
@@ -86,6 +102,22 @@ body {
   margin: 0;
   color: var(--muted);
   font-size: 0.9rem;
+}
+.theme-toggle {
+  margin-left: auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.25rem;
+  height: 2.25rem;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface);
+  color: var(--ink);
+  cursor: pointer;
+}
+.theme-toggle:hover {
+  border-color: var(--accent);
 }
 
 main.container {
