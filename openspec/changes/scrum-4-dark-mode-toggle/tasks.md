@@ -17,9 +17,9 @@
 
 ## 3. No persistence (REQ-003)
 
-- [ ] 3.1 Write a failing test: switch to dark mode, remount `App` (simulating
+- [x] 3.1 Write a failing test: switch to dark mode, remount `App` (simulating
       a reload), assert light mode is active again
-- [ ] 3.2 Confirm the implementation never reads/writes `localStorage`,
+- [x] 3.2 Confirm the implementation never reads/writes `localStorage`,
       `sessionStorage`, or cookies for theme; 3.1 passes because state is
       plain in-memory `useState`
 
