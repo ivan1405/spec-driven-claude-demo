@@ -67,6 +67,10 @@ capabilities:
   #   - "src/api/invoices/**"
   # auth:
   #   - "src/auth/**"
+  theme-toggle:
+    - "demo/src/App.jsx"
+    - "demo/src/components/Header.jsx"
+    - "demo/src/index.css"
 
 # These checks verify asdlc's OWN artifact contract — proposal/spec/design/
 # tasks.md, REQ-IDs, SHALL statements — nothing about OpenSpec, Spec Kit,
