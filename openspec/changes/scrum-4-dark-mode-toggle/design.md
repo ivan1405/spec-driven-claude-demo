@@ -66,4 +66,4 @@ the icon itself is `aria-hidden`. This follows the repo's existing pattern in
   browser's accessibility inspector before merging.
 
 ---
-Approved-by: Ivan Perez iperezfernande@expediagroup.com
+Approved-by: Ivan Perez <iperezfernande@expediagroup.com>
