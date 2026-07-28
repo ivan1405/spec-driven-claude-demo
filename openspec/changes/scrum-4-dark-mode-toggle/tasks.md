@@ -10,9 +10,9 @@
 
 ## 2. Icon swap (REQ-005)
 
-- [ ] 2.1 Write a failing test asserting the sun icon is shown in light mode
+- [x] 2.1 Write a failing test asserting the sun icon is shown in light mode
       and the moon icon is shown in dark mode
-- [ ] 2.2 Add inline SVG sun/moon icon components next to `Header.jsx`;
+- [x] 2.2 Add inline SVG sun/moon icon components next to `Header.jsx`;
       render the one matching the active theme, `aria-hidden`, so 2.1 passes
 
 ## 3. No persistence (REQ-003)

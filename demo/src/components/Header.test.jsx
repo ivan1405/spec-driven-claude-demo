@@ -35,4 +35,18 @@ describe("Header", () => {
 
     expect(onToggle).toHaveBeenCalledTimes(1);
   });
+
+  it("shows the sun icon (not the moon icon) while light mode is active (REQ-005)", () => {
+    const { container } = render(<Header count={0} theme="light" onToggle={() => {}} />);
+
+    expect(container.querySelector('svg[data-icon="sun"]')).not.toBeNull();
+    expect(container.querySelector('svg[data-icon="moon"]')).toBeNull();
+  });
+
+  it("shows the moon icon (not the sun icon) while dark mode is active (REQ-005)", () => {
+    const { container } = render(<Header count={0} theme="dark" onToggle={() => {}} />);
+
+    expect(container.querySelector('svg[data-icon="moon"]')).not.toBeNull();
+    expect(container.querySelector('svg[data-icon="sun"]')).toBeNull();
+  });
 });
