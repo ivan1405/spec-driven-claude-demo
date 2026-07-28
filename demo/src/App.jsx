@@ -45,7 +45,7 @@ export default function App() {
   );
 
   return (
-    <div className="app">
+    <div className="app" data-theme={theme}>
       <Header count={tasks.length} theme={theme} onToggle={toggleTheme} />
 
       <main className="container">

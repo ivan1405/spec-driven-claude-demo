@@ -25,12 +25,12 @@
 
 ## 4. Dark theme styling (REQ-006)
 
-- [ ] 4.1 Add a `[data-theme="dark"]` override block in `index.css` for
+- [x] 4.1 Add a `[data-theme="dark"]` override block in `index.css` for
       `--bg`, `--surface`, `--surface-2`, `--line`, `--ink`, `--muted`,
       keeping contrast ratios comparable to the light palette
-- [ ] 4.2 Apply the `data-theme` attribute to the app's root element from
+- [x] 4.2 Apply the `data-theme` attribute to the app's root element from
       `App.jsx` state
-- [ ] 4.3 Run the existing Vitest suite (task create/update/delete/filter)
+- [x] 4.3 Run the existing Vitest suite (task create/update/delete/filter)
       unchanged and confirm it still passes with dark mode active — no
       functional regression from the theme change
 
