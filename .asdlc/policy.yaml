@@ -1,0 +1,148 @@
+# .asdlc/policy.yaml — the per-engagement dial.
+#
+# This file is the whole point of the standard: the gates are identical across
+# clients, the thresholds are not. A regulated bank and a startup MVP run the
+# same `asdlc verify`; they disagree only here.
+#
+# Presets live in gates/presets/. Start from one, then tune.
+
+profile: balanced   # strict | balanced | light  (documentation only; see presets/)
+
+# Which SDD methodology `asdlc init --sdd` installed here (none/openspec/
+# speckit/bmad/kiro). Recorded so a later `asdlc init` re-run — e.g. adding a
+# tool — knows what's already configured without repeating --sdd, and so
+# `asdlc doctor`/the printed next-step hint stay accurate. Edit by hand if
+# you switch front-ends outside of `asdlc init --force`.
+sdd: "openspec"
+
+# Which engineering-practice packs `asdlc init --practices` installed into
+# docs/practices/ and linked from the context file. Two tiers: `core` (universal,
+# installed by default) and `domain` (observability, api-design, data-privacy,
+# cicd-release, infrastructure-as-code, performance, accessibility — opted into
+# by the nature of the project). Recorded so a re-run without --practices
+# remembers the selection (and `asdlc doctor` stays accurate). Guidance only —
+# not enforced by any gate. Edit by hand to add or drop a pack, then re-run
+# `asdlc init --force` to resync docs/practices/.
+# Comma-separated (quoted, like `sdd:` above — keeps the file valid YAML).
+practices: "boundary-validation, clarify-before-coding, evidence-based-completion, immutability, secure-by-default, small-units, surgical-changes, test-first, accessibility"
+
+# /jira-import behaviour.
+#   auto_approve: when true, once the technical-leader judges a Jira ticket
+#   detailed enough, it signs design.md's `Approved-by:` itself so the change
+#   can flow straight to implementation. Applies wherever the change actually
+#   ends up with a design.md — always for --sdd none, and for openspec/kiro
+#   when their own flow produced one (openspec's is optional; speckit/bmad
+#   never produce one, so there's nothing to sign there). This DELIBERATELY
+#   OVERRIDES the standard's rule that a human signs that line (see
+#   standard/03-definition-of-done.md) — it lets `human-approval` pass on
+#   agent authority, including on sensitive diffs.
+#   Set false to keep a human in the loop: the tech-lead instead posts a
+#   "spec ready for approval" comment on the ticket and stops.
+jira_import:
+  auto_approve: true
+
+# Where asdlc's own artifact contract lives. Set once by `asdlc init` based on
+# --sdd: openspec/changes+specs when OpenSpec is the front-end (or none is),
+# .asdlc/changes+specs otherwise — avoids calling this directory "openspec"
+# when OpenSpec isn't actually installed. Edit by hand if you move it later;
+# every gate reads these two values, not a hardcoded path.
+artifact_dirs:
+  changes: "openspec/changes"
+  specs: "openspec/specs"
+
+# What counts as production code. Everything else is free to change without spec.
+source_globs:
+  - "src/**"
+  - "lib/**"
+  - "app/**"
+  - "internal/**"
+  - "cmd/**"
+
+# Capability map: the drift gate's spine.
+# capability-name: [globs that implement it]
+# The change's spec.md must declare `Capability: <name>` when these files move.
+capabilities:
+  # billing:
+  #   - "src/billing/**"
+  #   - "src/api/invoices/**"
+  # auth:
+  #   - "src/auth/**"
+
+# These checks verify asdlc's OWN artifact contract — proposal/spec/design/
+# tasks.md, REQ-IDs, SHALL statements — nothing about OpenSpec, Spec Kit,
+# BMAD, or Kiro specifically. They're on by default (`sdd: none` above)
+# because nothing else checks that contract. `asdlc init --sdd <front-end>`
+# disables the four spec-shape ones below, since that front-end's own
+# commands don't produce this shape. Still using asdlc's own /propose
+# alongside the front-end? Flip them back to `enabled: true` by hand.
+checks:
+  spec-present:
+    enabled: false
+    required_artifacts: [proposal.md, spec.md, design.md, tasks.md]
+    # Escape hatches. Keep this list short and boring, or it eats the standard.
+    exempt_globs:
+      - "**/*.md"
+      - "**/*.lock"
+      - "**/migrations/__init__.py"
+
+  spec-lint:
+    enabled: false
+    min_scenarios_per_requirement: 1
+
+  traceability:
+    enabled: false
+    require_test_reference: true
+    test_globs:
+      - "tests/**"
+      - "test/**"
+      - "**/*_test.py"
+      - "**/*_test.go"
+      - "**/*.test.ts"
+      - "**/*.test.tsx"
+      - "**/*.spec.ts"
+      - "**/*Test.java"
+
+  spec-drift:
+    enabled: false
+    mode: fail        # fail | warn  (start at warn on a legacy repo, ratchet to fail)
+
+  coverage-delta:
+    enabled: true
+    report: coverage.xml
+    min_changed_file_coverage: 80
+    missing_report: fail   # fail | skip
+
+  security-scan:
+    enabled: true
+    secrets_sweep: true
+    # Use whatever the client already owns. Empty list = secrets sweep only.
+    scanners:
+      # - "semgrep --config auto --error --quiet ."
+      # - "trivy fs --exit-code 1 --severity HIGH,CRITICAL ."
+      # - "gitleaks detect --no-banner --redact"
+      # - "npm audit --audit-level=high"
+
+  human-approval:
+    enabled: true
+    min_pr_reviews: 1
+    approver_domains:        # e.g. ["yourconsultancy.com", "client.com"]
+    sensitive:
+      architecture:
+        - "**/design.md"
+        - "docs/adr/**"
+      data-migration:
+        - "**/migrations/**"
+        - "**/*.sql"
+      authn-authz:
+        - "src/auth/**"
+        - "**/permissions*"
+      public-api:
+        - "**/openapi*.y*ml"
+        - "**/*.proto"
+      money:
+        - "src/billing/**"
+        - "src/payments/**"
+      infra:
+        - "**/*.tf"
+        - "**/Dockerfile"
+        - ".github/workflows/**"
