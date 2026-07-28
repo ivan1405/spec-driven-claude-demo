@@ -36,7 +36,7 @@
 
 ## 5. E2E & verification
 
-- [ ] 5.1 Extend Playwright e2e coverage: clicking the toggle switches the
+- [x] 5.1 Extend Playwright e2e coverage: clicking the toggle switches the
       theme and the icon, and a reload after switching resets to light mode
-- [ ] 5.2 Run `npm test`, `npm run test:e2e`, and `asdlc verify`; fix
+- [x] 5.2 Run `npm test`, `npm run test:e2e`, and `asdlc verify`; fix
       anything reported before opening the PR
