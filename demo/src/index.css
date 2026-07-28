@@ -18,6 +18,16 @@
   --sans: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
 }
 
+[data-theme="dark"] {
+  /* dark palette — same relative contrast ratios as the light palette above */
+  --bg: #14141c;
+  --surface: #1e1e29;
+  --surface-2: #26263a;
+  --line: #3a3a52;
+  --ink: #f2f2f7;
+  --muted: #a6a6c0;
+}
+
 * {
   box-sizing: border-box;
 }
