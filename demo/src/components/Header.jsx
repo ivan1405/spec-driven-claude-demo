@@ -1,4 +1,5 @@
-export default function Header({ count }) {
+export default function Header({ count, theme = "light", onToggleTheme }) {
+  const isDark = theme === "dark";
   return (
     <header className="masthead">
       <div className="container masthead-inner">
@@ -12,6 +13,13 @@ export default function Header({ count }) {
           A playground for the spec-driven ticket workflow ·{" "}
           <span className="mono">{count} tasks</span>
         </p>
+        <button
+          type="button"
+          className="theme-toggle"
+          onClick={onToggleTheme}
+          aria-label={isDark ? "Switch to light mode" : "Switch to dark mode"}
+        >
+        </button>
       </div>
     </header>
   );
