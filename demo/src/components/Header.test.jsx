@@ -28,4 +28,16 @@ describe("Header", () => {
       screen.getByRole("button", { name: /switch to light mode/i })
     ).toBeInTheDocument();
   });
+
+  it("REQ-005: shows the sun icon in light mode and the moon icon in dark mode", () => {
+    const { container, rerender } = render(
+      <Header count={0} theme="light" onToggleTheme={() => {}} />
+    );
+    expect(container.querySelector('[data-icon="sun"]')).toBeInTheDocument();
+    expect(container.querySelector('[data-icon="moon"]')).not.toBeInTheDocument();
+
+    rerender(<Header count={0} theme="dark" onToggleTheme={() => {}} />);
+    expect(container.querySelector('[data-icon="moon"]')).toBeInTheDocument();
+    expect(container.querySelector('[data-icon="sun"]')).not.toBeInTheDocument();
+  });
 });
