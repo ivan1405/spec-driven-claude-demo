@@ -66,4 +66,28 @@ test.describe("task board", () => {
     await filterGroup.getByRole("button", { name: "all", exact: true }).click();
     await expect(page.getByText(lowTitle, { exact: true })).toBeVisible();
   });
+
+  test("theme toggle switches the app to dark mode and back, and a reload resets to light mode (REQ-002, REQ-003, REQ-004, REQ-005, REQ-006)", async ({ page }) => {
+    await expect(page.locator(".app")).toHaveAttribute("data-theme", "light");
+    const toggle = page.getByRole("button", { name: "Switch to dark mode" });
+    await expect(toggle.locator('svg[data-icon="sun"]')).toBeVisible();
+
+    await toggle.click();
+
+    await expect(page.locator(".app")).toHaveAttribute("data-theme", "dark");
+    const toggleAfterSwitch = page.getByRole("button", { name: "Switch to light mode" });
+    await expect(toggleAfterSwitch.locator('svg[data-icon="moon"]')).toBeVisible();
+
+    await toggleAfterSwitch.click();
+    await expect(page.locator(".app")).toHaveAttribute("data-theme", "light");
+    await expect(page.getByRole("button", { name: "Switch to dark mode" })).toBeVisible();
+
+    await page.getByRole("button", { name: "Switch to dark mode" }).click();
+    await expect(page.locator(".app")).toHaveAttribute("data-theme", "dark");
+
+    await page.reload();
+
+    await expect(page.locator(".app")).toHaveAttribute("data-theme", "light");
+    await expect(page.getByRole("button", { name: "Switch to dark mode" })).toBeVisible();
+  });
 });
