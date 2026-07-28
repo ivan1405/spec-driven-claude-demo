@@ -15,4 +15,16 @@ describe("Header", () => {
     const toggle = screen.getByRole("button", { name: "Switch to dark mode" });
     expect(toggle).toBeInTheDocument();
   });
+
+  // REQ-005: toggle shows a sun icon in light mode, a moon icon in dark
+  // mode, mutually exclusive.
+  it("shows the sun icon in light mode and the moon icon in dark mode (REQ-005)", () => {
+    const { rerender } = render(<Header count={0} theme="light" onToggle={() => {}} />);
+    expect(screen.getByTestId("icon-sun")).toBeInTheDocument();
+    expect(screen.queryByTestId("icon-moon")).not.toBeInTheDocument();
+
+    rerender(<Header count={0} theme="dark" onToggle={() => {}} />);
+    expect(screen.getByTestId("icon-moon")).toBeInTheDocument();
+    expect(screen.queryByTestId("icon-sun")).not.toBeInTheDocument();
+  });
 });

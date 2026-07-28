@@ -1,3 +1,5 @@
+import { SunIcon, MoonIcon } from "./ThemeIcons.jsx";
+
 export default function Header({ count, theme, onToggle }) {
   const nextTheme = theme === "dark" ? "light" : "dark";
 
@@ -19,7 +21,9 @@ export default function Header({ count, theme, onToggle }) {
           className="theme-toggle"
           onClick={onToggle}
           aria-label={`Switch to ${nextTheme} mode`}
-        ></button>
+        >
+          {theme === "dark" ? <MoonIcon /> : <SunIcon />}
+        </button>
       </div>
     </header>
   );
