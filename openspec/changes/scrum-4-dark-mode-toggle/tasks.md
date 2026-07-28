@@ -1,11 +1,11 @@
 ## 1. Theme state & toggle control (REQ-001, REQ-002, REQ-004)
 
-- [ ] 1.1 Write failing tests: toggle renders in the header with an
+- [x] 1.1 Write failing tests: toggle renders in the header with an
       accessible name (REQ-001); app is in light mode on first render
       (REQ-002)
-- [ ] 1.2 Add theme state (`useState("light")`) to `App.jsx`; pass `theme`
+- [x] 1.2 Add theme state (`useState("light")`) to `App.jsx`; pass `theme`
       and a toggle handler down to `Header`
-- [ ] 1.3 Add the toggle `<button>` to `Header.jsx`, wired to flip the theme
+- [x] 1.3 Add the toggle `<button>` to `Header.jsx`, wired to flip the theme
       on click, so 1.1's tests pass (REQ-004)
 
 ## 2. Icon swap (REQ-005)
