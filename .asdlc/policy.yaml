@@ -81,7 +81,7 @@ capabilities:
 # alongside the front-end? Flip them back to `enabled: true` by hand.
 checks:
   spec-present:
-    enabled: false
+    enabled: true
     required_artifacts: [proposal.md, spec.md, design.md, tasks.md]
     # Escape hatches. Keep this list short and boring, or it eats the standard.
     exempt_globs:
@@ -90,11 +90,11 @@ checks:
       - "**/migrations/__init__.py"
 
   spec-lint:
-    enabled: false
+    enabled: true
     min_scenarios_per_requirement: 1
 
   traceability:
-    enabled: false
+    enabled: true
     require_test_reference: true
     test_globs:
       - "tests/**"
@@ -107,7 +107,7 @@ checks:
       - "**/*Test.java"
 
   spec-drift:
-    enabled: false
+    enabled: true
     mode: fail        # fail | warn  (start at warn on a legacy repo, ratchet to fail)
 
   coverage-delta:
